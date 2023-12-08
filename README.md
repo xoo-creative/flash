@@ -1,4 +1,4 @@
-# Flash ⚡️
+# flash ⚡️
 A faster and better way to learn new technologies, specifically for software engineers.
 
 ## How to use?
@@ -7,8 +7,14 @@ Type in a new technology that you're trying to wrap your head around, and let ou
 Happy learning!
 
 ## Why make this?
-After surveying hundreds of software engineers during my many internships, I found that almost everyone's approach to learning a new technology is simply "read the documentation, find some examples, try some code, repeat". Many admit that they don't have a proper method, and just "try things until I think I get it". There must be a better way! 
+[Software engineers need to learn new technologies constantly](https://www.reddit.com/r/AskEngineers/comments/t8qo2v/do_you_constantly_have_to_learn_new_stuff_as_a/). Given that there are [literally millions of libraries in various programming languages](https://www.codingem.com/what-is-a-library/), and new ones released almost everyday, we spend a lot of our time trying to learn and apply new tools.
 
-Also, as many more transition into the tech industry (either from other industries or fresh out of university), people need proper learning approaches _specific for technologies_, ones that can help many beginner-level learners advance their skills. The method above only works if you already have strong experience in the field.
+But I found that many professional software engineers I worked with have a "brute-force" approach to learning:
+1. Read the documentation
+2. Find some examples on SO or Medium
+3. Try some code locally
+4. Repeat until you think you understand enough of it for your use
 
-Having extensive teaching experience university-level computer science and data science courses, I condensed my knowledge and reflections into `Flash`, a new technology learning framework that will accelerate your learning and simplify your work, allowing you to become a better engineer, faster!
+Not only is this an inefficient way of learning, it's also not scalable more junior engineers, since the approach of learning **relies** on your ability to parse dense documentation and "fill in the gaps" yourself (How could I learn a python package this way if I don't even know how to `pip install`?).
+
+Having extensive teaching experience university-level computer science and data science courses, I condensed my knowledge and reflections into `flash`, a new way of learning on the job, helping you accelerate your work and professional growth, allowing you to become a better engineer, faster!
