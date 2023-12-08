@@ -1,14 +1,14 @@
-# new-techies
-A better way to learn new technologies as a beginner.
-
-## How does it work?
-As a new-grad who has experienced learning new technologies on/off the job, I have discovered a key mental blocker in the learning process:
-
-> "Why is this \[tool\] significant, and how does it improve on other ways to achieve the same thing?"
-
-It is only after you understand this that the specific design decisions or APIs for new technologies make sense. At the same time, it's hard to just _know_ this as a beginner, since you did not experience the "old ways" of this approach. 
-
-If you're not convinced that this is a key mental blocker, try explaining why coders use `git` to a non-coder. They may say that zipping files & copying and pasting it between machines is a great approach to sharing work compared to the extremely complex world of `git`. But if you highlighted the difficulty of sharing code across organizations of thousands of different locations & machines, as well as the reality that software companies can make hundreds of code changes within a single day, then it should be easier to understand.
+# Flash ⚡️
+A better way to learn new technologies, in this ever-changing world.
 
 ## How to use?
-Type in a new technology that you're trying to wrap your head around, and let our platform handle the rest. We can provide you the context about why this technology exists, why it's popular/useful, what are common usecases, and simple code snippets to get you started. Hopefully, this will "unblock" your learning!
+Type in a new technology that you're trying to wrap your head around, and let our platform handle the rest. We'll generate a short (< 3 min) read that will teach you everything you need to know, starting with the context about why this technology exists, why it's popular/useful, key concepts, common usecases, and runnable code snippets to get you started. 
+
+Happy learning!
+
+## Why make this?
+After surveying hundreds of software engineers during my many internships, I found that almost everyone's approach to learning a new technology is simply "read the documentation, find some examples, try some code, repeat". Many admit that they don't have a proper method, and just "try things until I think I get it". There must be a better way! 
+
+Also, as many more transition into the tech industry (either from other industries or fresh out of university), people need proper learning approaches _specific for technologies_, ones that can help many beginner-level learners advance their skills. The method above only works if you already have strong experience in the field.
+
+Having extensive teaching experience university-level computer science and data science courses, I condensed my knowledge and reflections into `Flash`, a new technology learning framework that will accelerate your learning and simplify your work, allowing you to become a better engineer, faster!
