@@ -305,3 +305,20 @@ Now that Docker is installed, let's create a simple Python Flask application and
 5. Access the Application:
 
     Open a web browser and go to <http://localhost:5000>. You should see "Hello, Docker!" displayed.
+
+## Real Life Examples
+
+### Example Voting App:
+
+- Description: A distributed application demonstrating Docker's multi-container management capabilities, integrating Docker Compose, Swarm, and Kubernetes.
+- URL: https://github.com/dockersamples/example-voting-app
+
+### Wordsmith:
+
+- Description: Showcases Docker containers under Kubernetes, highlighting container orchestration.
+- URL: https://github.com/dockersamples/wordsmith
+
+### Compose-Dev-Env:
+
+- Description: Illustrates Docker's use in development environments, focusing on compose applications.
+- URL: https://github.com/dockersamples/compose-dev-env
