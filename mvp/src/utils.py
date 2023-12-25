@@ -3,4 +3,4 @@ def load_text(path):
         return fp.read()
 
 def load_prompt(prompt):
-    return load_text(f"prompts/{prompt}.txt")
+    return load_text(f"../prompts/{prompt}.txt")
