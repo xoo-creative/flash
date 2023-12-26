@@ -116,7 +116,7 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 ### **Generated Learning Material**{: .color-primary}
 
-<|{learning_material}|input|multiline|label=Your learning material!|class_name=fullwidth|>
+<|{learning_material}|input|multiline|label=Your learning material!|class_name=fullwidth rebuild|>
 
 <br/>
 
@@ -125,7 +125,6 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 Original code can be found [here](https://github.com/xoo-creative/flash)
 |>
 """
-
 
 if __name__ == "__main__":
     Gui(page).run(title='flash')
