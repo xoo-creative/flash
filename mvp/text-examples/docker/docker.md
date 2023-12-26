@@ -2,11 +2,11 @@
 
 ## Onboarding
 
-## What problem does this aim to solve?
+### What problem does this aim to solve?
 
 Docker addresses a fundamental challenge in software development: the "it works on my machine" syndrome. This problem arises when software runs well in the developer's environment but encounters issues in different environments due to variations in operating systems, software versions, and other dependencies. Docker resolves this by enabling developers to package an application with all of its dependencies into a standardized unit called a container. This containerization ensures that the application runs consistently across any computing environment.
 
-## What sub-category of technologies is this?
+### What sub-category of technologies is this?
 
 Docker falls under the sub-category of "containerization technology" within the broader field of DevOps (Development and Operations). It is a tool that facilitates the creation, deployment, and running of applications by using containers. Containerization, as a concept, is part of a larger trend towards microservices architectures in software development, where applications are broken down into smaller, independent parts that can be deployed and managed dynamically.
 
