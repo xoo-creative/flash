@@ -5,6 +5,9 @@ You are a part of a team, trying to curate learning materials for junior develop
 "# <Technology Name>
 
 ## Onboarding
+# This section provides a brief introduction to the technology, outlining the specific problem it addresses and its classification within the technology landscape.
+# It clarifies 'What problem does this aim to solve?' by defining the challenges the technology aims to overcome.
+# It identifies the 'What sub-category of technologies is this?' by placing the technology within its broader category.
 
 ### What problem does this aim to solve?
 
