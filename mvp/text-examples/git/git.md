@@ -2,10 +2,11 @@
 
 ## Onboarding
 
-What problem does this aim to solve?
+### What problem does this aim to solve?
+
 Git is designed to tackle the complexities of tracking changes in software development projects. Before version control systems like Git, developers often found it challenging to keep track of changes in code, collaborate effectively without overwriting each other's work, and revert back to previous states of a project if needed. Git solves these problems by providing a robust, efficient system for version control and collaboration.
 
-## What sub-category of technologies is this?
+### What sub-category of technologies is this?
 
 Git is a "Distributed Version Control System" (DVCS). Unlike centralized version control systems, every Git directory on every developer's computer is a full-fledged repository with a complete history and full version-tracking abilities, independent of network access or a central server. This approach greatly enhances the flexibility and speed of development workflows.
 
@@ -13,35 +14,57 @@ Git is a "Distributed Version Control System" (DVCS). Unlike centralized version
 
 ### Without Git
 
-- **Tracking Changes**: Developers manually track changes in files, which is error-prone and lacks efficiency.
-- **Collaboration**: Collaborating on a codebase is difficult. Changes by different team members can easily overwrite each other, leading to loss of work.
-- **Reverting Changes**: Reverting to a previous version of the project is complex and sometimes impossible without a systematic backup.
-- **Example Scenario**: A developer accidentally overwrites a file with an older version, losing all recent work because there is no record of the newer changes.
+#### Tracking Changes
+
+Developers manually track changes in files, which is error-prone and lacks efficiency.
+
+#### Collaboration
+
+Collaborating on a codebase is difficult. Changes by different team members can easily overwrite each other, leading to loss of work.
+
+#### Reverting Changes
+
+Reverting to a previous version of the project is complex and sometimes impossible without a systematic backup.
+
+#### Example Scenario
+
+A developer accidentally overwrites a file with an older version, losing all recent work because there is no record of the newer changes.
 
 ### With Git
 
-- **Efficient Change Tracking**: Git allows developers to track every single change in the project, down to specific lines in files. Each change is part of a commit with a unique ID.
-  - Example Command:
+#### Efficient Change Tracking
 
-    ```bash
-    git commit -m "Added new login feature"
-    ```
+Git allows developers to track every single change in the project, down to specific lines in files. Each change is part of a commit with a unique ID.
 
-- **Seamless Collaboration**: Multiple developers can work on the same project simultaneously without overwriting each other's work, thanks to branches and merging.
-  - Example Command:
+Example Command:
 
-    ```bash
-    git merge feature-branch
-    ```
+```bash
+git commit -m "Added new login feature"
+```
 
-- **Safe Reversion**: Git enables safe and easy reversion to previous states without losing current progress.
-  - Example Command:
+#### Seamless Collaboration
 
-    ```bash
-    git revert <commit-hash>
-    ```
+Multiple developers can work on the same project simultaneously without overwriting each other's work, thanks to branches and merging.
 
-- **Example Workflow**: A developer creates a new branch (`git branch new-feature`), works on new features, commits changes (`git commit -m "New feature added"`), and merges these changes back to the main branch (`git merge new-feature`).
+Example Command:
+
+```bash
+git merge feature-branch
+```
+
+#### Safe Reversion
+
+Git enables safe and easy reversion to previous states without losing current progress.
+
+Example Command:
+
+```bash
+git revert <commit-hash>
+```
+
+#### Example Workflow
+
+A developer creates a new branch (`git branch new-feature`), works on new features, commits changes (`git commit -m "New feature added"`), and merges these changes back to the main branch (`git merge new-feature`).
 
 ## Core Concepts
 
