@@ -52,6 +52,8 @@ Docker Compose is a tool for managing multi-container applications, using a YAML
 INPUT: Git
 
 RESPONSE:
+## Core Concepts
+
 ### Repository (Repo)
 A Git repository is where project files and their history are stored. It can be on your local machine or a remote server. Creating a new local repository involves running `git init`, while cloning an existing repository from a remote source uses `git clone <url>`.
 
