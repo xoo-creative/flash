@@ -1,5 +1,8 @@
 # Git
 
+## File Header
+This document serves as an introduction and educational guide to Git, a Distributed Version Control System (DVCS). It aims to provide a comprehensive overview of the Git version control system, covering its core concepts, basic commands, and workflows to help developers manage and collaborate on software projects effectively. 
+
 ## Onboarding
 
 ### What problem does this aim to solve?
