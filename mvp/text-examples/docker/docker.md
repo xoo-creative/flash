@@ -19,7 +19,7 @@ Docker falls under the sub-category of "containerization technology" within the 
 Individual developers are responsible for setting up their development environments, which includes installing Python, Flask, and other dependencies.
 Variability in OS and dependency versions can lead to inconsistencies.
 
-Example Setup:
+Example setup:
 
 ```bash
 # Install Python
@@ -37,14 +37,12 @@ Time-consuming setup for new team members to mirror the environment accurately.
 Ensuring that the production server matches the development environment is error-prone.
 Manual environment setup is required for each deployment.
 
-Example Deployment Steps:
+Example deployment steps:
 
-```bash
-# On server
-# Install Python, Flask, and other dependencies
-# Set environment variables
-# Deploy the application
-```
+1. Navigate to the server
+2. Install Python, Flask, and other dependencies
+3. Set environment variables
+4. Deploy the application
 
 #### Version Control Issues
 
@@ -55,6 +53,7 @@ Keeping track of which versions of dependencies are used across different develo
 #### Consistent Environment Setup
 
 Dockerfile defines the exact environment, including the OS, Python version, and dependencies.
+
 Example Dockerfile:
 
 ```Dockerfile
@@ -72,7 +71,7 @@ Environment setup is consistent across all developers' machines and production.
 Developers focus on writing code rather than managing environments.
 Containers ensure that the application runs in an isolated environment, avoiding conflicts with other projects.
 
-Example Commands to Build and Run Container:
+Example commands to build and run a container:
 
 ```bash
 # Build Docker image
@@ -87,7 +86,7 @@ docker run -p 5000:5000 my-flask-app
 Deployment is as simple as running the container on any server with Docker installed.
 The application runs in the same environment as it does in development, minimizing deployment issues.
 
-Example Deployment Commands:
+Example deployment commands:
 
 ```bash
 # On server
