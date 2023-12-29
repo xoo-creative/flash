@@ -2,10 +2,11 @@
 
 ## Onboarding
 
-What problem does this aim to solve?
+### What problem does this aim to solve?
+
 Git is designed to tackle the complexities of tracking changes in software development projects. Before version control systems like Git, developers often found it challenging to keep track of changes in code, collaborate effectively without overwriting each other's work, and revert back to previous states of a project if needed. Git solves these problems by providing a robust, efficient system for version control and collaboration.
 
-## What sub-category of technologies is this?
+### What sub-category of technologies is this?
 
 Git is a "Distributed Version Control System" (DVCS). Unlike centralized version control systems, every Git directory on every developer's computer is a full-fledged repository with a complete history and full version-tracking abilities, independent of network access or a central server. This approach greatly enhances the flexibility and speed of development workflows.
 
