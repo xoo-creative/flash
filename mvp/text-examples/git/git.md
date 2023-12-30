@@ -206,4 +206,3 @@ We'll go through the process of initializing a repository, making changes, and p
     # Check the status of your local repository
     git status
     ```
-
