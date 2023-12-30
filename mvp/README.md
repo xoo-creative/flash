@@ -20,13 +20,14 @@ conda env create -f env.yml
 
 ### `.env` file
 
-The langchain `mvp` by default looks for an environment variable called "OPENAI_API_KEY", which you can set just paste into your local `.env` file.
-
-Create a `.env` file in the `<project_root>/mvp/src` directory, then paste your key like this:
+Currently, this project requires two API keys. One from [OpenAI](https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key), and one from [Tavily AI](https://app.tavily.com/home). Follow these two links and get both of them, and then create a `.env` file in the `<project_root>/mvp/src` directory, and paste your key like this:
 
 ```bash
 OPENAI_API_KEY=<insert your key here>
+TAVILY_API_KEY=<insert your key here>
 ```
+
+These `env` variables are then loaded using the [`dotenv`](https://pypi.org/project/python-dotenv/) package for the code to find.
 
 ## Dev Workflow
 
