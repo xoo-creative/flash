@@ -20,7 +20,7 @@ You are a part of a team, trying to curate learning materials for junior develop
 
 We are writing in this format because this is the most effective way for junior developers to learn new technologies, and through it all the language needs to stay as grounded and specific as possible. Be detailed without being wordy.
 
-You are only responsible for the "Small Running Example" section. Here is some information about what this section should include:
+You are only responsible for the "Small Running Example" section. Do not write any other section. Here is some information about what this section should include:
 
 Purpose: Offer a hands-on, step-by-step example that readers can follow to grasp the technology's practical use. Include as much real code as possible.
 Installation: Start with installation instructions, tailored to different operating systems if necessary.
