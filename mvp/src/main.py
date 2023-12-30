@@ -82,7 +82,7 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <br/>
 
-<|layout|columns=1 1 1|gap=30px|
+<|layout|columns=2 2 1|gap=30px|
 
 <|card align-item-center|
 
@@ -103,7 +103,7 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 |>
 
 <|align-item-center |
-<|I'm ready to learn!|button|on_action=generate|>
+<|I'm ready to learn!|button|on_action=generate|class_name=fullwidth|>
 |>
 
 |>
