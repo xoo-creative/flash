@@ -7,7 +7,7 @@ import re
 from taipy.gui import Gui, notify
 
 # Import modules
-from agent import Agent
+from agent.agent import Agent
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -44,7 +44,7 @@ def generate(state):
 
     state.n_requests += 1
     state.learning_material = (
-        agent.generate_core_principles().strip().replace('"', "")
+        agent.generate_core_concepts().strip().replace('"', "")
     )
 
     # Notify the user in console and in the GUI
@@ -60,7 +60,7 @@ def generate(state):
 learning_material = ""
 n_requests = 0
 
-technology = "Apache Kafka"
+technology = "Elm"
 level = "Beginner"
 
 # Called whever there is a problem
