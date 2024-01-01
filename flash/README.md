@@ -14,13 +14,13 @@ You need two things to get started:
 ### Create venv
 
 ```bash
-# While in mvp/src directory
+# In the project root directory
 conda env create -f env.yml
 ```
 
 ### `.env` file
 
-Currently, this project requires two API keys. One from [OpenAI](https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key), and one from [Tavily AI](https://app.tavily.com/home). Follow these two links and get both of them, and then create a `.env` file in the `<project_root>/mvp/src` directory, and paste your key like this:
+Currently, this project requires two API keys. One from [OpenAI](https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key), and one from [Tavily AI](https://app.tavily.com/home). Follow these two links and get both of them, and then create a `.env` file in the `<project_root>/flash` directory, and paste your key like this:
 
 ```bash
 OPENAI_API_KEY=<insert your key here>
@@ -37,7 +37,7 @@ Our app is based on `taipy`, a python-markdown framework that builds data webapp
 
 ```bash
 conda activate flash-env
-cd src/
+cd flash/
 python main.py
 ```
 
