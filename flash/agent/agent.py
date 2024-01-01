@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-from .utils import load_text
-from src.commons.learning_material import LearningMaterial
-from src.commons.prompt import Prompt
+from flash.commons.utils import load_prompt
+from flash.commons.learning_material import LearningMaterial
+from flash.commons.prompt import Prompt
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate,
@@ -23,10 +23,11 @@ class Agent:
         self.learning_material = LearningMaterial(technology=technology)
 
     def write_section(self, section: Prompt, technology_name: str) -> str:
-        try:
-            requested_prompt = self.load_prompt(section)
-        except:
-            raise RuntimeError("Section title provided is not one of the valid sections. Please check the `prompts` folder for options.")
+        # logging.info(f"Prompt value is {section.value}.")
+        # try:
+        requested_prompt = load_prompt(section)
+        # except:
+        #     raise RuntimeError("Section title provided is not one of the valid sections. Please check the `prompts` folder for options.")
         
         if technology_name == "":
             raise RuntimeError("No technology name is provided, but it is required.")
@@ -47,14 +48,11 @@ class Agent:
         )
 
         return chat_response.content
-    
-    def load_prompt(self, prompt: Prompt) -> str:
-        return U.load_text(f"../prompts/{prompt.value}.txt")
 
 
     def generate_core_concepts(self) -> str:
 
-        logging.info("Writing'Core Concepts' section")
+        logging.info("Writing 'Core Concepts' section")
 
         self.learning_material.core_concepts = self.write_section(Prompt.CORE_CONCEPTS, self.technology)
 

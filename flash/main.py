@@ -120,6 +120,8 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <br/>
 
+{learning_material}
+
 **Code from [@tommysteryy](https://github.com/tommysteryy)**
 
 Original code can be found [here](https://github.com/xoo-creative/flash)

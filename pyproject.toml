@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "flash"
+version = "0.1.0"
+description = "The proper way for software engineers to learn new technologies"
+authors = ["Tommy Xu <tommysteryy@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+langchain = "^0.0.353"
+python-dotenv = "^1.0.0"
+taipy = "^3.0.0"
+openai = "^1.6.1"
+tavily-python = "^0.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
