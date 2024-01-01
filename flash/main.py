@@ -44,9 +44,8 @@ def generate(state):
     agent = Agent(state.technology)
 
     state.n_requests += 1
-    state.learning_material = (
-        agent.generate_full().strip().replace('"', "")
-    )
+    state.learning_material = agent.generate_full().strip().replace('"', "")
+    
 
     # Notify the user in console and in the GUI
     logging.info(
@@ -120,8 +119,6 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 <|{learning_material}|input|multiline|label=Your learning material!|class_name=fullwidth rebuild|>
 
 <br/>
-
-{learning_material}
 
 **Code from [@tommysteryy](https://github.com/tommysteryy)**
 
