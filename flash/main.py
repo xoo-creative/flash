@@ -65,6 +65,17 @@ level = "Beginner"
 
 # Called whever there is a problem
 def on_exception(state, function_name: str, ex: Exception):
+    """
+    Logs the exception and the name of the function where the exception occurred.
+
+    Args:
+        state: Not used in this function.
+        function_name (str): The name of the function where the exception occurred.
+        ex (Exception): The exception that occurred.
+
+    Returns:
+        None
+    """
     logging.error(f"Problem {ex} \nin {function_name}")
     notify(state, 'error', f"Problem {ex} \nin {function_name}")
 
