@@ -48,32 +48,25 @@ class Agent:
         )
 
         return chat_response.content
+    
+    def generate_section(self, section_title: Prompt) -> str:
+        logging.info(f"Writing {section_title.value} section")
 
+        section_content = self.write_section(section_title, self.technology)
+        self.learning_material.set(section_title, section_content)
 
-    def generate_core_concepts(self) -> str:
-
-        logging.info("Writing 'Core Concepts' section")
-
-        self.learning_material.core_concepts = self.write_section(Prompt.CORE_CONCEPTS, self.technology)
-
-        return self.learning_material.core_concepts
+        return section_content
+    
+    def generate_full(self) -> str:
+        self.generate_section(Prompt.ONBOARDING)
+        self.generate_section(Prompt.WITH_AND_WITHOUT)
+        self.generate_section(Prompt.CORE_CONCEPTS)
+        self.generate_section(Prompt.CORE_APIS)
+        self.generate_section(Prompt.SMALL_RUNNABLE_EXAMPLE)
+        return self.learning_material.render()
 
         
-        
-        # core_concepts_prompt = load_prompt("core-concepts")
-        # human_prompt_template = "{technology_name}"
-
-        # system_message_prompt = SystemMessagePromptTemplate.from_template(core_concepts_prompt)
-        # human_message_prompt = HumanMessagePromptTemplate.from_template(human_prompt_template)
-
-        # chat_prompt = ChatPromptTemplate.from_messages(
-        #     [system_message_prompt, human_message_prompt]
-        # )
-
-        # self.core_principles = self.openai_chat(chat_prompt.format_prompt(technology_name=self.technology).to_messages())
-
-        # return self.core_principles.content
-
+    
 
 
 

@@ -8,6 +8,7 @@ from taipy.gui import Gui, notify
 
 # Import modules
 from agent.agent import Agent
+from flash.commons.prompt import Prompt
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -44,7 +45,7 @@ def generate(state):
 
     state.n_requests += 1
     state.learning_material = (
-        agent.generate_core_concepts().strip().replace('"', "")
+        agent.generate_full().strip().replace('"', "")
     )
 
     # Notify the user in console and in the GUI
