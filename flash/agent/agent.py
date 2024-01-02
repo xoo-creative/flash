@@ -16,13 +16,32 @@ load_dotenv()
 
 class Agent:
 
-    def __init__(self, technology) -> None:
+    def __init__(self, technology: str) -> None:
+        """
+        Initializes an Agent object.
+
+        Parameters:
+            technology (str): The name of the technology for the Agent.
+
+        Returns:
+            None
+        """
         
         self.openai_chat = ChatOpenAI(temperature=0)
         self.technology=technology
         self.learning_material = LearningMaterial(technology=technology)
 
     def write_section(self, section: Prompt, technology_name: str) -> str:
+        """
+        Writes a section of the learning material.
+
+        Parameters:
+            section (Prompt): The section prompt to guide the content.
+            technology_name (str): The name of the technology for the section.
+
+        Returns:
+            str: The content of the chat response.
+        """
         # logging.info(f"Prompt value is {section.value}.")
         # try:
         requested_prompt = load_prompt(section)
@@ -50,6 +69,15 @@ class Agent:
         return chat_response.content
     
     def generate_section(self, section_title: Prompt) -> str:
+        """
+        Generates a section of the learning material.
+
+        Parameters:
+            section_title (Prompt): The title prompt of the section.
+
+        Returns:
+            str: The content of the generated section.
+        """
         logging.info(f"Writing {section_title.value} section")
 
         section_content = self.write_section(section_title, self.technology)
@@ -57,7 +85,16 @@ class Agent:
 
         return section_content
     
-    def generate_full(self) -> str:
+    def generate_full(self) -> None:
+        """
+        Generates the full learning material.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         self.generate_section(Prompt.ONBOARDING)
         self.generate_section(Prompt.WITH_AND_WITHOUT)
         self.generate_section(Prompt.CORE_CONCEPTS)
