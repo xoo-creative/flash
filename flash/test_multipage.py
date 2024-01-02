@@ -4,6 +4,10 @@ from taipy.gui import Markdown, State
 result_ready = False
 
 def change_content(state: State):
+    """
+    This function is responsible for changing the content of the GUI page.
+    It takes a State object as input and updates the GUI with new content.
+    """
     content = """
 # Elm
 
