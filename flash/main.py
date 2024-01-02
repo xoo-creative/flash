@@ -138,4 +138,4 @@ Original code can be found [here](https://github.com/xoo-creative/flash)
 """
 
 if __name__ == "__main__":
-    Gui(page).run(title='flash')
+    Gui(page).run(title='flash', use_reloader=True, debug=True)
