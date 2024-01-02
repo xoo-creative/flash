@@ -16,11 +16,11 @@ load_dotenv()
 
 class Agent:
 
-    def __init__(self, technology) -> None:
+    def __init__(self, technology: str) -> None:
         
         self.openai_chat = ChatOpenAI(temperature=0)
-        self.technology=technology
-        self.learning_material = LearningMaterial(technology=technology)
+        self.technology: str = technology
+        self.learning_material: LearningMaterial = LearningMaterial(technology=technology)
 
     def write_section(self, section: Prompt, technology_name: str) -> str:
         # logging.info(f"Prompt value is {section.value}.")
@@ -59,10 +59,10 @@ class Agent:
     
     def generate_full(self) -> str:
         self.generate_section(Prompt.ONBOARDING)
-        self.generate_section(Prompt.WITH_AND_WITHOUT)
-        self.generate_section(Prompt.CORE_CONCEPTS)
-        self.generate_section(Prompt.CORE_APIS)
-        self.generate_section(Prompt.SMALL_RUNNABLE_EXAMPLE)
+        # self.generate_section(Prompt.WITH_AND_WITHOUT)
+        # self.generate_section(Prompt.CORE_CONCEPTS)
+        # self.generate_section(Prompt.CORE_APIS)
+        # self.generate_section(Prompt.SMALL_RUNNABLE_EXAMPLE)
         return self.learning_material.render()
 
         

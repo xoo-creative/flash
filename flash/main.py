@@ -4,7 +4,7 @@ import random
 import re
 
 # Import from 3rd party libraries
-from taipy.gui import Gui, notify
+from taipy.gui import Gui, notify, State, Markdown
 
 # Import modules
 from agent.agent import Agent
@@ -27,7 +27,7 @@ def error_too_many_requests(state):
 
 
 # Define functions
-def generate(state):
+def generate(state: State) -> None:
     """Generate Learning Materials."""
     state.learning_material = ""
 
@@ -44,24 +44,29 @@ def generate(state):
     agent = Agent(state.technology)
 
     state.n_requests += 1
-    state.learning_material = agent.generate_full().strip().replace('"', "")
+    learning_material = agent.generate_full().strip().replace('"', "")
     
 
     # Notify the user in console and in the GUI
     logging.info(
-        f"Technology: {state.technology}\n"
-        f"Learning Material: {state.learning_material}"
+        f"Technology: {agent.technology}\n"
+        f"Learning Material: {learning_material}"
     )
+
+    state.learning_material_ready = True
+
+    gui = state.get_gui()
+
+    page_name = f"learn-{agent.technology.strip().lower().replace(' ', '')}"
+    logging.info(f"Storing info at page: {page_name}")
+    # state.learning_material_page = page_name
+
+    gui.add_page(page_name, Markdown(learning_material))
+
     notify(state, "success", "Ready to Learn!")
 
+    
 
-
-# Variables
-learning_material = ""
-n_requests = 0
-
-technology = "Elm"
-level = "Beginner"
 
 # Called whever there is a problem
 def on_exception(state, function_name: str, ex: Exception):
@@ -80,13 +85,41 @@ def on_exception(state, function_name: str, ex: Exception):
     notify(state, 'error', f"Problem {ex} \nin {function_name}")
 
 
+# Variables
+learning_material = ""
+n_requests = 0
+learning_material_page = "TEST"
+
+technology = "Elm"
+level = "Beginner"
+learning_material_ready = False
 # Markdown for the entire page
 ## <text|
 ## |text> 
 ## "text" here is just a name given to my part/my section
 ## it has no meaning in the code
-page = """
+
+root_md = """
 <|container|
+
+<|content|>
+
+<br/>
+
+---
+
+<br/>
+
+**Code from [@tommysteryy](https://github.com/tommysteryy)**
+
+Original code can be found [here](https://github.com/xoo-creative/flash)
+
+|>
+
+"""
+
+
+homepage = """
 # **flash**{: .color-primary} ⚡️
 
 The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teaching techniques from higher education.
@@ -121,21 +154,16 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <br/>
 
----
-
-<br/>
-
-### **Generated Learning Material**{: .color-primary}
-
-<|{learning_material}|input|multiline|label=Your learning material!|class_name=fullwidth rebuild|>
-
-<br/>
-
-**Code from [@tommysteryy](https://github.com/tommysteryy)**
-
-Original code can be found [here](https://github.com/xoo-creative/flash)
+<|part|render={learning_material_ready}|class_name=card|
+## **Your Learning Material**{: .color-primary}
+You can find your report about {technology} [here](/page)
 |>
 """
 
+pages = {
+    "/": root_md,
+    "home": homepage
+}
+
 if __name__ == "__main__":
-    Gui(page).run(title='flash', use_reloader=True, debug=True)
+    Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
