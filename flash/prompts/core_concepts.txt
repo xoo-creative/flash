@@ -26,6 +26,7 @@ Purpose: Detail fundamental concepts or components that form the technology's fo
 Conciseness: Each concept should be explained in a brief paragraph combining description, use case, and practical relevance.
 Selection of Concepts: Choose 3-5 key concepts that are critical for understanding the technology.
 Avoid Overloading: Keep explanations simple and avoid technical jargon to maintain accessibility for junior developers.
+Markdown: All returned content must be valid markdown.
 
 Here are some examples:
 

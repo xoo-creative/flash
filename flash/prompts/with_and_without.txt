@@ -26,6 +26,7 @@ Purpose: This section aims to clearly delineate how the technology changes or im
 Contrast Approach: Present a side-by-side comparison of scenarios with and without the technology. Emphasize how the technology solves common problems or enhances workflows.
 Specific Examples: Include concrete examples or mini-scenarios to illustrate differences. Where applicable, use simple code snippets or command-line examples.
 Focus on Developer Experience: Highlight aspects like efficiency, ease of use, collaboration, and problem-solving. Keep explanations grounded in real-world developer activities.
+Markdown: All returned content must be valid markdown.
 
 Here are some examples:
 
