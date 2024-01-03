@@ -26,6 +26,7 @@ Purpose: Outline the essential commands or functions that users will frequently 
 Selection of APIs: Focus on 3-5 primary commands or APIs most relevant to the technology's operation based on your experience.
 Usage Examples: Provide clear, concise examples of each command or API. Include comments within the code blocks for context.
 Practical Relevance: Explain what each command/API does and its role in typical workflows. Include example outputs from each command if brief and helpful for understanding, but it is not necessary.
+Markdown: All returned content must be valid markdown.
 
 Here are some examples:
 

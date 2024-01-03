@@ -1,14 +1,12 @@
 # Import from standard library
 import logging
-import random
-import re
 
 # Import from 3rd party libraries
-from taipy.gui import Gui, notify
+from taipy.gui import Gui, notify, State, Markdown
 
 # Import modules
 from agent.agent import Agent
-from flash.commons.prompt import Prompt
+from flash.commons.utils import load_text, escape_markdown
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -27,7 +25,7 @@ def error_too_many_requests(state):
 
 
 # Define functions
-def generate(state):
+def generate(state: State) -> None:
     """Generate Learning Materials."""
     state.learning_material = ""
 
@@ -44,24 +42,22 @@ def generate(state):
     agent = Agent(state.technology)
 
     state.n_requests += 1
-    state.learning_material = agent.generate_full().strip().replace('"', "")
-    
+    learning_material = agent.generate_full().strip().replace('"', "")
+    learning_material = escape_markdown(learning_material)
 
     # Notify the user in console and in the GUI
     logging.info(
-        f"Technology: {state.technology}\n"
-        f"Learning Material: {state.learning_material}"
+        f"Technology: {agent.technology}\n"
+        f"Learning Material: {learning_material}"
     )
+
+    gui = state.get_gui()
+    gui.add_page("learn", Markdown(learning_material))
+
+    state.learning_material_ready = True
+
     notify(state, "success", "Ready to Learn!")
 
-
-
-# Variables
-learning_material = ""
-n_requests = 0
-
-technology = "Elm"
-level = "Beginner"
 
 # Called whever there is a problem
 def on_exception(state, function_name: str, ex: Exception):
@@ -80,13 +76,40 @@ def on_exception(state, function_name: str, ex: Exception):
     notify(state, 'error', f"Problem {ex} \nin {function_name}")
 
 
+# Variables
+learning_material = ""
+n_requests = 0
+
+technology = "Elm"
+level = "Beginner"
+learning_material_ready = False
 # Markdown for the entire page
 ## <text|
 ## |text> 
 ## "text" here is just a name given to my part/my section
 ## it has no meaning in the code
-page = """
+
+root_md = """
 <|container|
+
+<|content|>
+
+<br/>
+
+---
+
+<br/>
+
+**Code from [@tommysteryy](https://github.com/tommysteryy)**
+
+Original code can be found [here](https://github.com/xoo-creative/flash)
+
+|>
+
+"""
+
+
+homepage = """
 # **flash**{: .color-primary} ⚡️
 
 The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teaching techniques from higher education.
@@ -121,21 +144,16 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <br/>
 
----
-
-<br/>
-
-### **Generated Learning Material**{: .color-primary}
-
-<|{learning_material}|input|multiline|label=Your learning material!|class_name=fullwidth rebuild|>
-
-<br/>
-
-**Code from [@tommysteryy](https://github.com/tommysteryy)**
-
-Original code can be found [here](https://github.com/xoo-creative/flash)
+<|part|render={learning_material_ready}|class_name=card|
+## **Your Learning Material**{: .color-primary}
+You can find your report about <|{technology}|> [here](/learn)
 |>
 """
 
+pages = {
+    "/": root_md,
+    "home": homepage
+}
+
 if __name__ == "__main__":
-    Gui(page).run(title='flash', use_reloader=True, debug=True)
+    Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)

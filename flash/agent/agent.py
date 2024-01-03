@@ -16,20 +16,23 @@ load_dotenv()
 
 class Agent:
 
-    def __init__(self, technology: str) -> None:
-        """
+    def __init__(self, technology: str, gpt_version: str = "gpt-3.5-turbo") -> None:
+
         Initializes an Agent object.
 
         Parameters:
             technology (str): The name of the technology for the Agent.
+              
+        Optional:
+            gpt_version (str): Specifies the version of OpenAI GPT you want.
 
         Returns:
             None
         """
         
-        self.openai_chat = ChatOpenAI(temperature=0)
-        self.technology=technology
-        self.learning_material = LearningMaterial(technology=technology)
+        self.technology: str = technology
+        self.learning_material: LearningMaterial = LearningMaterial(technology=technology)
+        self.openai_chat = ChatOpenAI(temperature=0, model=gpt_version)
 
     def write_section(self, section: Prompt, technology_name: str) -> str:
         """
