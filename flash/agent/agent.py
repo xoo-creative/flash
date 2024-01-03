@@ -85,15 +85,15 @@ class Agent:
 
         return section_content
     
-    def generate_full(self) -> None:
+    def generate_full(self) -> str:
         """
-        Generates the full learning material.
+        Generates the full learning material and returns it as a string.
 
         Parameters:
             None
 
         Returns:
-            None
+            str: The complete learning material as a string.
         """
         self.generate_section(Prompt.ONBOARDING)
         self.generate_section(Prompt.WITH_AND_WITHOUT)
