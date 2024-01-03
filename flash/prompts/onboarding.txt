@@ -26,7 +26,8 @@ Purpose: Briefly explain the technology, highlight the problems it solves, and i
 There are two specific questions you need to answer:
 - What problem does this aim to solve?: Clearly and briefly define the specific challenges the technology addresses.
 - What sub-category of technologies is this?: Concisely place the technology within its broader category (e.g., containerization, version control).
-The language in this section needs to be brief and concise, since there are many more sections afterwards. 
+Language: Be concise and direct to the point, since there are many more sections afterwards. 
+Markdown: All returned content must be valid markdown.
 
 Here are some examples:
 

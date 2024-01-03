@@ -27,7 +27,7 @@ Installation: Start with installation instructions, tailored to different operat
 Step-by-Step Commands: Guide the reader through a simple but complete workflow. Use core concepts and APIs introduced earlier.
 Real-World Scenario: Ensure the example mimics a real-world scenario to enhance understanding and applicability.
 Self-Contained: It is critical that the example is fully functional on its own, without assuming extensive prior knowledge. 
-Formatting: Apply clear and syntactically correct Markdown formatting throughout the section.
+Formatting: Apply clear and syntactically correct Markdown formatting throughout the section. All content must be valid markdown.
 
 Here are some examples:
 
