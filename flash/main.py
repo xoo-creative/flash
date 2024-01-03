@@ -1,14 +1,12 @@
 # Import from standard library
 import logging
-import random
-import re
 
 # Import from 3rd party libraries
 from taipy.gui import Gui, notify, State, Markdown
 
 # Import modules
 from agent.agent import Agent
-from flash.commons.prompt import Prompt
+from flash.commons.utils import load_text, escape_markdown
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -45,7 +43,7 @@ def generate(state: State) -> None:
 
     state.n_requests += 1
     learning_material = agent.generate_full().strip().replace('"', "")
-    
+    learning_material = escape_markdown(learning_material)
 
     # Notify the user in console and in the GUI
     logging.info(
@@ -53,19 +51,12 @@ def generate(state: State) -> None:
         f"Learning Material: {learning_material}"
     )
 
+    gui = state.get_gui()
+    gui.add_page("learn", Markdown(learning_material))
+
     state.learning_material_ready = True
 
-    gui = state.get_gui()
-
-    page_name = f"learn-{agent.technology.strip().lower().replace(' ', '')}"
-    logging.info(f"Storing info at page: {page_name}")
-    # state.learning_material_page = page_name
-
-    gui.add_page(page_name, Markdown(learning_material))
-
     notify(state, "success", "Ready to Learn!")
-
-    
 
 
 # Called whever there is a problem
@@ -88,7 +79,6 @@ def on_exception(state, function_name: str, ex: Exception):
 # Variables
 learning_material = ""
 n_requests = 0
-learning_material_page = "TEST"
 
 technology = "Elm"
 level = "Beginner"
@@ -156,7 +146,7 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <|part|render={learning_material_ready}|class_name=card|
 ## **Your Learning Material**{: .color-primary}
-You can find your report about {technology} [here](/page)
+You can find your report about <|{technology}|> [here](/learn)
 |>
 """
 

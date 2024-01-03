@@ -24,3 +24,18 @@ def load_prompt(prompt: Prompt) -> str:
                                                   resource_name=f"prompts/{prompt.value}.txt")
 
     return load_text(prompt_path)
+
+
+def escape_markdown(content: str) -> str:
+    """
+    Returns format-safe markdown str that can be passed into the taipy.Gui.Markdown function.
+    """
+    to_replace = {
+        ">" : "\>",
+        # "}" : "\}"
+    }
+
+    for old, new in to_replace.items():
+        content = content.replace(old, new)
+    
+    return content
