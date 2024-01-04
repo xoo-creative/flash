@@ -39,3 +39,21 @@ def escape_markdown(content: str) -> str:
         content = content.replace(old, new)
     
     return content
+
+
+def _write_flash(content: str, path: str) -> str:
+
+    """
+    Writes `content` to a file in subfolder `/<project_root>/flash/{path}` 
+    """
+
+    flash_folder_path = pkg_resources.resource_filename("flash", "")
+
+    file_path = f"{flash_folder_path}/{path}"
+
+    logging.info(f"Writing content to {file_path}")
+
+    with open(file_path, "w") as fp:
+        fp.write(content)
+
+    
