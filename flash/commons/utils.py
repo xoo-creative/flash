@@ -51,8 +51,8 @@ def _write_flash(content: str, path: str) -> str:
 
     file_path = f"{flash_folder_path}/{path}"
 
-    logging.debug(f"Writing content to {file_path}")
-    
+    logging.info(f"Writing content to {file_path}")
+
     with open(file_path, "w") as fp:
         fp.write(content)
 
