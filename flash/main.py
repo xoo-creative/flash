@@ -6,6 +6,7 @@ from taipy.gui import Gui, notify, State, Markdown
 
 # Import modules
 from agent.agent import Agent
+from flash.agent.lambda_agent import LambdaAgent
 from flash.commons.utils import load_text, escape_markdown
 
 # Configure logger
@@ -156,4 +157,7 @@ pages = {
 }
 
 if __name__ == "__main__":
-    Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
+    a = LambdaAgent("Elm")
+    result = a.get_learning_material()
+    print(result)
+    # Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
