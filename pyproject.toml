@@ -12,6 +12,7 @@ python-dotenv = "^1.0.0"
 taipy = "^3.0.0"
 openai = "^1.6.1"
 tavily-python = "^0.3.0"
+boto3 = "^1.34.17"
 
 
 [build-system]

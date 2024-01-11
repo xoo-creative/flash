@@ -1,11 +1,11 @@
 # Import from standard library
 import logging
+import datetime
 
 # Import from 3rd party libraries
 from taipy.gui import Gui, notify, State, Markdown
 
 # Import modules
-from agent.agent import Agent
 from flash.agent.lambda_agent import LambdaAgent
 from flash.commons.utils import load_text, escape_markdown
 
@@ -40,10 +40,10 @@ def generate(state: State) -> None:
         notify(state, "error", "Please enter a technology you want to learn.")
         return
 
-    agent = Agent(state.technology)
+    agent = LambdaAgent(state.technology)
 
     state.n_requests += 1
-    learning_material = agent.generate_full().strip().replace('"', "")
+    learning_material = agent.get_learning_material().strip().replace('"', "")
     learning_material = escape_markdown(learning_material)
 
     # Notify the user in console and in the GUI
@@ -157,7 +157,7 @@ pages = {
 }
 
 if __name__ == "__main__":
-    a = LambdaAgent("Elm")
-    result = a.get_learning_material()
-    print(result)
-    # Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
+    # a = LambdaAgent("Apache Kafka")
+    # result = a.get_learning_material()
+    # print(result)
+    Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
