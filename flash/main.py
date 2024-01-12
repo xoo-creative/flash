@@ -157,7 +157,4 @@ pages = {
 }
 
 if __name__ == "__main__":
-    # a = LambdaAgent("Apache Kafka")
-    # result = a.get_learning_material()
-    # print(result)
     Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
