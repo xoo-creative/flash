@@ -1,5 +1,5 @@
 # flash ⚡️
-A faster and better way to learn new technologies, specifically for software engineers.
+A faster and better way to learn new technologies, specifically for software engineers. Power by [`flash-agent`](https://github.com/xoo-creative/flash-agent/tree/main), a parallelized, multi-agent AWS Lambda built with LangChain.
 
 ## How to use?
 Type in a new technology that you're trying to wrap your head around, and let our platform handle the rest. We'll generate a short (< 3 min) read that will teach you everything you need to know, starting with the context about why this technology exists, why it's popular/useful, key concepts, common usecases, and runnable code snippets to get you started. 
