@@ -7,7 +7,7 @@ import logging
 import time
 import boto3
 
-from flash.commons.utils import _write_flash
+from flash.commons.utils import TEST_MD_CONTENT, _write_flash, load_text
 import boto3
 
 LAMBDA_FUNCTION_ARN="arn:aws:lambda:us-west-2:799492718470:function:flash"
@@ -18,17 +18,22 @@ load_dotenv()
 
 class LambdaAgent:
 
-    def __init__(self, technology: str) -> None:
+    def __init__(self, technology: str, testing = False) -> None:
 
         if technology.strip() == "":
             raise RuntimeError("Technology is empty. Did you pass in the correct technology?")
             
         self.technology: str = technology.strip()
+        self.testing = testing
         self.learning_material: str = ""
         self.initalize_aws()
         
 
     def get_learning_material(self) -> str:
+
+        if self.testing:
+            logging.debug("Since testing is set to true, returning test page.")
+            return TEST_MD_CONTENT
 
         payload = json.dumps({
             "technology": self.technology
