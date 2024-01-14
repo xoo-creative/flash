@@ -1,4 +1,4 @@
-# flash
+# flash ⚡️
 
 ## Examples
 
@@ -17,10 +17,13 @@ You need two things to get started:
 # In the project root directory
 conda env create -f env.yml
 ```
+This should create a venv called `flash-env`.
 
 ### `.env` file
 
-Currently, this project requires two API keys. One from [OpenAI](https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key), and one from [Tavily AI](https://app.tavily.com/home). Follow these two links and get both of them, and then create a `.env` file in the `<project_root>/flash` directory, and paste your key like this:
+Currently, this project uses two API keys. One from [OpenAI](https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key), and one from [Tavily AI](https://app.tavily.com/home). Follow these two links and get both of them, and then create a `.env` file in the `<project_root>/flash` directory, and paste your key like this:
+
+Note that the Tavily API key isn't used by default. See more about that in [`flash-agent`](https://github.com/xoo-creative/flash-agent).
 
 ```bash
 OPENAI_API_KEY=<insert your key here>
