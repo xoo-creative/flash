@@ -9,8 +9,6 @@ from flash.commons.utils import TEST_MD_CONTENT, _write_flash
 import boto3
 
 LAMBDA_FUNCTION_ARN="arn:aws:lambda:us-west-2:799492718470:function:flash"
-LAMBDA_ENDPOINT="https://imf2z1468l.execute-api.us-west-2.amazonaws.com/default/flash"
-AWS_REGION = "us-west-2"
 
 load_dotenv()
 
@@ -69,6 +67,9 @@ class LambdaAgent:
         _write_flash(content, f"text-examples/experiments/{filename}")
 
     def initalize_aws(self) -> None:
-        self.session = boto3.Session(profile_name="flash")
-        self.lambda_client = self.session.client("lambda", region_name=AWS_REGION)
+        self.lambda_client = boto3.client("lambda", 
+                                          region_name=os.environ["AWS_DEFAULT_REGION"],
+                                          aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"], 
+                                          aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"])
+        logging.info("AWS profile successfully initialized.")
          
