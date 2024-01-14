@@ -1,13 +1,13 @@
 # Import from standard library
 import logging
-import datetime
 
 # Import from 3rd party libraries
-from taipy.gui import Gui, notify, State, Markdown
+from taipy.gui import Gui, notify, State, Markdown, navigate
 
 # Import modules
 from flash.agent.lambda_agent import LambdaAgent
-from flash.commons.utils import load_text, escape_markdown
+from flash.commons.page import Page, remove_spaces_and_lower_case
+from flash.commons.utils import capitalize_each_word, escape_markdown, technology_page_exists
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -29,6 +29,7 @@ def error_too_many_requests(state):
 def generate(state: State) -> None:
     """Generate Learning Materials."""
     state.learning_material = ""
+    state.learning_material_ready = False
 
     # Check the number of requests done by the user
     if state.n_requests >= 5:
@@ -39,8 +40,12 @@ def generate(state: State) -> None:
     if state.technology == "":
         notify(state, "error", "Please enter a technology you want to learn.")
         return
+    
+    if technology_page_exists(state.technology, state.list_of_pages):
+        notify(state, "error", "This technology has already been generated for. Please check the left menu bar for the corresponding page!")
+        return
 
-    agent = LambdaAgent(state.technology)
+    agent = LambdaAgent(state.technology.strip(), testing=False)
 
     state.n_requests += 1
     learning_material = agent.get_learning_material().strip().replace('"', "")
@@ -53,12 +58,22 @@ def generate(state: State) -> None:
     )
 
     gui = state.get_gui()
-    gui.add_page("learn", Markdown(learning_material))
+
+    new_page_name = f"learn_{remove_spaces_and_lower_case(agent.technology)}"
+
+    # These need to be changed together because taipy.gui's pages are actually not related to the menu pages.
+    gui.add_page(new_page_name, Markdown(learning_material))
+    state.list_of_pages.append(Page(new_page_name, capitalize_each_word(agent.technology)))
+
+    # need this refresh to reload the menu
+    state.refresh("list_of_pages")
 
     state.learning_material_ready = True
 
-    notify(state, "success", "Ready to Learn!")
-
+    notify(state = state, 
+           notification_type="success", 
+           message=f"Your learning material should be ready to view in the new tab named \"{capitalize_each_word(agent.technology)}\"!",
+           duration=5000)
 
 # Called whever there is a problem
 def on_exception(state, function_name: str, ex: Exception):
@@ -74,7 +89,7 @@ def on_exception(state, function_name: str, ex: Exception):
         None
     """
     logging.error(f"Problem {ex} \nin {function_name}")
-    notify(state, 'error', f"Problem {ex} \nin {function_name}")
+    notify(state, 'error', f"An unfortunate back-end error occurred. Please try again or come back later.")
 
 
 # Variables
@@ -90,8 +105,20 @@ learning_material_ready = False
 ## "text" here is just a name given to my part/my section
 ## it has no meaning in the code
 
+def make_menu_item(page: Page) -> str:
+    return page.convert_to_taipy_menu_page()
+
+def on_menu(state, action, info):
+    page = info["args"][0]
+    navigate(state, to=page)
+
+list_of_pages = [Page("home", "Home")]
+
+
 root_md = """
-<|container|
+
+<|container
+<|menu|label=Menu|lov={list_of_pages}|on_action=on_menu|adapter=make_menu_item|>
 
 <|content|>
 
@@ -145,9 +172,13 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <br/>
 
+
+"""
+
+"""
 <|part|render={learning_material_ready}|class_name=card|
 ## **Your Learning Material**{: .color-primary}
-You can find your report about <|{technology}|> [here](/learn)
+You can find your unique notes on a new tab called <|{technology}|> in the nav bar!
 |>
 """
 
