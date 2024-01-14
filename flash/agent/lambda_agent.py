@@ -37,6 +37,12 @@ class LambdaAgent:
             "technology": self.technology
         })
 
+        headers = {
+            'x-api-key': os.environ['AWS_LAMBDA_API_KEY'],
+            'Content-Type': 'application/json'
+        }
+
+
         logging.info("Starting request to AWS Lambda")
         start_time = time.time()
 
