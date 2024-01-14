@@ -1,6 +1,5 @@
 import pkg_resources
 from flash.commons.page import Page
-from flash.commons.prompt import Prompt
 
 import logging
 
@@ -18,14 +17,6 @@ def load_text(path: str) -> str:
     logging.info(f"Reading from path {path}")
     with open(path, "r") as fp:
         return fp.read()
-    
-def load_prompt(prompt: Prompt) -> str:
-
-    prompt_path = pkg_resources.resource_filename(package_or_requirement="flash", 
-                                                  resource_name=f"prompts/{prompt.value}.txt")
-
-    return load_text(prompt_path)
-
 
 def escape_markdown(content: str) -> str:
     """

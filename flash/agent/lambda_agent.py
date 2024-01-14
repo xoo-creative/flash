@@ -1,5 +1,3 @@
-from httpcore import Response
-import requests
 import json
 from dotenv import load_dotenv
 import os
@@ -7,7 +5,7 @@ import logging
 import time
 import boto3
 
-from flash.commons.utils import TEST_MD_CONTENT, _write_flash, load_text
+from flash.commons.utils import TEST_MD_CONTENT, _write_flash
 import boto3
 
 LAMBDA_FUNCTION_ARN="arn:aws:lambda:us-west-2:799492718470:function:flash"
