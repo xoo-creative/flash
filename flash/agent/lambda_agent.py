@@ -51,7 +51,7 @@ class LambdaAgent:
         logging.debug(f"Parsed response body looks like: {response_body}")
 
         self.learning_material = response_body["learning_material"]
-        self.to_md(filename=f"{self.technology.replace(' ', '_').lower()}_test.md")
+        # self.to_md(filename=f"{self.technology.replace(' ', '_').lower()}_test.md")
 
         return self.learning_material
     
