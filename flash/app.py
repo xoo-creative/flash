@@ -1,6 +1,6 @@
 # Import from standard library
 import logging
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Import from 3rd party libraries
 from taipy.gui import Gui, notify, State, Markdown, navigate
@@ -13,7 +13,7 @@ from flash.commons.utils import capitalize_each_word, escape_markdown, technolog
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
 
-load_dotenv()
+# load_dotenv()
 
 def error_prompt_flagged(state, prompt):
     """Notify user that a prompt has been flagged."""

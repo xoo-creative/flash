@@ -1,5 +1,5 @@
 import json
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 import logging 
 import time
@@ -10,7 +10,7 @@ import boto3
 
 LAMBDA_FUNCTION_ARN="arn:aws:lambda:us-west-2:799492718470:function:flash"
 
-load_dotenv()
+# load_dotenv()
 
 class LambdaAgent:
 
