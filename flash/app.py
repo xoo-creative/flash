@@ -1,19 +1,20 @@
 # Import from standard library
 import logging
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 # Import from 3rd party libraries
 from taipy.gui import Gui, notify, State, Markdown, navigate
 
 # Import modules
 from flash.agent.lambda_agent import LambdaAgent
+from flash.commons.models import Model, ModelUsage
 from flash.commons.page import Page, remove_spaces_and_lower_case
 from flash.commons.utils import capitalize_each_word, escape_markdown, technology_page_exists
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
 
-# load_dotenv()
+load_dotenv()
 
 def error_prompt_flagged(state, prompt):
     """Notify user that a prompt has been flagged."""
@@ -101,6 +102,9 @@ n_requests = 0
 technology = "Elm"
 level = "Beginner"
 learning_material_ready = False
+list_of_model_usages = [ModelUsage(Model.GPT_3_5, 10), ModelUsage(Model.GPT_4, 2)]
+
+model=list_of_model_usages[0]
 # Markdown for the entire page
 ## <text|
 ## |text> 
@@ -116,6 +120,10 @@ def on_menu(state, action, info):
 
 list_of_pages = [Page("home", "Home")]
 
+
+
+def make_model_usage_item(model_usage: ModelUsage) -> str:
+    return model_usage.render()
 
 root_md = """
 
@@ -146,7 +154,7 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 <br/>
 
-<|layout|columns=2 2 1|gap=30px|
+<|layout|columns=2 2 2 1|gap=30px|
 
 <|card align-item-center|
 
@@ -166,8 +174,13 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 |>
 
+<|card align-item-center|
+### **Model**{: .color-primary}
+<|{model}|selector|lov={list_of_model_usages}|dropdown|adapter=make_model_usage_item|>
+|>
+
 <|align-item-center |
-<|I'm ready to learn!|button|on_action=generate|class_name=fullwidth|>
+<|Teach me!|button|on_action=generate|class_name=fullwidth|>
 |>
 
 |>
