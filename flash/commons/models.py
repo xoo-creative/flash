@@ -1,5 +1,6 @@
 
 from dataclasses import dataclass
+import dataclasses
 from enum import Enum
 
 
@@ -17,4 +18,6 @@ class ModelUsage:
     def render(self) -> str:
         return f"{self.model.value} ({self.usages_remaining} free uses left)"
     
-
+    def decrement(self, n: int = 1) -> None:
+        self.usages_remaining -= n
+        

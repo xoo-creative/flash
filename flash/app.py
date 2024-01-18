@@ -47,15 +47,20 @@ def generate(state: State) -> None:
     if technology_page_exists(state.technology, state.list_of_pages):
         notify(state, "error", "This technology has already been generated for. Please check the left menu bar for the corresponding page!")
         return
+    
+    # Check if user still has enough requests of this model left
+    if state.model.usages_remaining == 0:
+        notify(state, "error", "The selected model has run out of free usages. Please choose a different model, or contact the creator.")
+        return
 
-    agent = LambdaAgent(state.technology.strip(), testing=False)
+    agent = LambdaAgent(state.technology.strip(), testing=True)
 
     state.n_requests += 1
     learning_material = agent.get_learning_material().strip().replace('"', "")
     learning_material = escape_markdown(learning_material)
 
     # Notify the user in console and in the GUI
-    logging.info(
+    logging.debug(
         f"Technology: {agent.technology}\n"
         f"Learning Material: {learning_material}"
     )
@@ -71,12 +76,31 @@ def generate(state: State) -> None:
     # need this refresh to reload the menu
     state.refresh("list_of_pages")
 
+    # update the num of requests left
+    update_model_usage(state)
+    state.refresh("list_of_model_usages")
+    state.model = state.list_of_model_usages[0]
+
+
     state.learning_material_ready = True
 
     notify(state = state, 
            notification_type="success", 
-           message=f"Your learning material should be ready to view in the new tab named \"{capitalize_each_word(agent.technology)}\"!",
+           message=f"Your learning material should be ready to view in th   e new tab named \"{capitalize_each_word(agent.technology)}\"!",
            duration=5000)
+    
+def update_model_usage(state: State) -> None:
+    # need to update the number of requests left
+    _found = False
+    for model_usage in state.list_of_model_usages:
+        if model_usage.model.value == state.model.model.value:
+            _found = True
+            model_usage.decrement()
+    
+    if not _found:
+        logging.WARN(f"Could not find the user-selected model in list_of_model_usages {list_of_model_usages} using state {state}. No decrementing was performed.")
+
+    # return list_of_model_usages
 
 # Called whever there is a problem
 def on_exception(state, function_name: str, ex: Exception):
@@ -102,9 +126,12 @@ n_requests = 0
 technology = "Elm"
 level = "Beginner"
 learning_material_ready = False
-list_of_model_usages = [ModelUsage(Model.GPT_3_5, 10), ModelUsage(Model.GPT_4, 2)]
 
-model=list_of_model_usages[0]
+NUM_GPT3_5_REQUESTS = 10
+NUM_GPT4_REQUESTS = 2
+
+list_of_model_usages = [ModelUsage(Model.GPT_3_5, NUM_GPT3_5_REQUESTS), ModelUsage(Model.GPT_4, NUM_GPT4_REQUESTS)]
+model: ModelUsage =list_of_model_usages[0]
 # Markdown for the entire page
 ## <text|
 ## |text> 
