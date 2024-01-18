@@ -12,7 +12,7 @@ from flash.commons.page import Page, remove_spaces_and_lower_case
 from flash.commons.utils import capitalize_each_word, escape_markdown
 
 # Configure logger
-logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.DEBUG, force=True)
+logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
 
 load_dotenv()
 
