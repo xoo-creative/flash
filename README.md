@@ -1,8 +1,8 @@
 # flash ⚡️
-The faster and proper way to learn new technologies, specifically designed for software engineers. Power by [`flash-agent`](https://github.com/xoo-creative/flash-agent/tree/main), a parallelized, multi-agent AWS Lambda built with [LangChain](https://github.com/langchain-ai/langchain).
+The faster and proper way to learn new technologies, specifically designed for software engineers. Power by [`flash-agent`](https://github.com/xoo-creative/flash-agent/tree/main), a parallelized, multi-agent AWS Lambda built with [LangChain](https://github.com/langchain-ai/langchain). Currently in `beta`.
 
 ## How does it work?
-Type in a new technology that you're trying to wrap your head around, and let our platform handle the rest. We'll generate a short (< 3 min) read that will teach you everything you need to know, starting with the context about why this technology exists, why it's popular/useful, key concepts, common usecases, and a self-contained and practical code example to get you started. 
+Navigate to [`flash`](https://tommysteryy-flash-b4977b4fbac5.herokuapp.com/). Type in a new technology that you're trying to wrap your head around, and let our platform handle the rest. We'll generate a short (< 3 min) read that will teach you everything you need to know, starting with the context about why this technology exists, why it's popular/useful, key concepts, common usecases, and a self-contained and practical code example to get you started. 
 
 ### Examples
 Feel free to check out our text-based examples, ordered by your current experience level. Obviously, the optimal experience would be if you had not used this technology before, but that is not required to enjoy `flash`.
