@@ -39,9 +39,9 @@ These `env` variables are then loaded using the [`dotenv`](https://pypi.org/proj
 Our app is based on `taipy`, a python-markdown framework that builds data webapps.
 
 ```bash
+## In project root
 conda activate flash-env
-cd flash/
-python main.py
+python flash/app.py
 ```
 
 ### Adding new packages

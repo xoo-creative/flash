@@ -1,3 +1,4 @@
 flask-sqlalchemy
 taipy
 boto3
+python-dotenv

@@ -51,12 +51,6 @@ def _write_flash(content: str, path: str) -> str:
 def capitalize_each_word(words: str) -> str:
     return " ".join([word.capitalize() for word in words.split(" ")])
 
-def technology_page_exists(technology: str, lop: list[Page]) -> bool:
-    for page in lop:
-        if page.is_for_technology(technology):
-            return True
-    return False
-
     
 TEST_MD_CONTENT = """# Test Technology
 
