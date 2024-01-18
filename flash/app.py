@@ -131,6 +131,13 @@ def on_exception(state, function_name: str, ex: Exception):
     notify(state, 'error', f"An unfortunate back-end error occurred. Please try again or come back later.")
 
 
+def make_menu_item(page: Page) -> str:
+    return page.convert_to_taipy_menu_page()
+
+def on_menu(state, action, info):
+    page = info["args"][0]
+    navigate(state, to=page)
+
 # Variables
 learning_material = ""
 n_requests = 0
@@ -143,18 +150,6 @@ NUM_GPT4_REQUESTS = 2
 
 list_of_model_usages = [ModelUsage(Model.GPT_3_5, NUM_GPT3_5_REQUESTS), ModelUsage(Model.GPT_4, NUM_GPT4_REQUESTS)]
 model: ModelUsage =list_of_model_usages[0]
-# Markdown for the entire page
-## <text|
-## |text> 
-## "text" here is just a name given to my part/my section
-## it has no meaning in the code
-
-def make_menu_item(page: Page) -> str:
-    return page.convert_to_taipy_menu_page()
-
-def on_menu(state, action, info):
-    page = info["args"][0]
-    navigate(state, to=page)
 
 list_of_pages = [Page("home", "Home")]
 
