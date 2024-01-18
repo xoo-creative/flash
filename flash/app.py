@@ -9,7 +9,7 @@ from taipy.gui import Gui, notify, State, Markdown, navigate
 from flash.agent.lambda_agent import LambdaAgent
 from flash.commons.models import Model, ModelUsage
 from flash.commons.page import Page, remove_spaces_and_lower_case
-from flash.commons.utils import capitalize_each_word, escape_markdown, technology_page_exists
+from flash.commons.utils import capitalize_each_word, escape_markdown
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -32,11 +32,15 @@ def error_too_many_requests(state):
 def generate(state: State) -> None:
     """Generate Learning Materials."""
     state.learning_material = ""
-    state.learning_material_ready = False
 
     # Check the number of requests done by the user
     if state.n_requests >= 5:
         error_too_many_requests(state)
+        return
+    
+    # Check if user still has enough requests of this model left
+    if state.model.usages_remaining == 0:
+        notify(state, "error", "The selected model has run out of free usages. Please choose a different model, or contact the creator.")
         return
 
     # Check if the user has put a topic
@@ -44,14 +48,10 @@ def generate(state: State) -> None:
         notify(state, "error", "Please enter a technology you want to learn.")
         return
     
-    if technology_page_exists(state.technology, state.list_of_pages):
+    if technology_page_exists(state):
         notify(state, "error", "This technology has already been generated for. Please check the left menu bar for the corresponding page!")
         return
-    
-    # Check if user still has enough requests of this model left
-    if state.model.usages_remaining == 0:
-        notify(state, "error", "The selected model has run out of free usages. Please choose a different model, or contact the creator.")
-        return
+
 
     agent = LambdaAgent(state.technology.strip(), testing=True)
 
@@ -67,11 +67,13 @@ def generate(state: State) -> None:
 
     gui = state.get_gui()
 
-    new_page_name = f"learn_{remove_spaces_and_lower_case(agent.technology)}"
+    new_page_url = generate_page_url(agent.technology, state.level, state.model.model)
+    new_page_name = generate_page_name(agent.technology, state.level, state.model.model)
 
     # These need to be changed together because taipy.gui's pages are actually not related to the menu pages.
-    gui.add_page(new_page_name, Markdown(learning_material))
-    state.list_of_pages.append(Page(new_page_name, capitalize_each_word(agent.technology)))
+    gui.add_page(new_page_url, Markdown(learning_material))
+    state.list_of_pages.append(Page(new_page_url, new_page_name, remove_spaces_and_lower_case(agent.technology),
+                                    state.level, state.model.model))
 
     # need this refresh to reload the menu
     state.refresh("list_of_pages")
@@ -79,15 +81,25 @@ def generate(state: State) -> None:
     # update the num of requests left
     update_model_usage(state)
     state.refresh("list_of_model_usages")
-    state.model = state.list_of_model_usages[0]
-
-
-    state.learning_material_ready = True
+    state.model = state.list_of_model_usages[0]   # default to first model, i.e. using GPT-3.5
 
     notify(state = state, 
            notification_type="success", 
-           message=f"Your learning material should be ready to view in th   e new tab named \"{capitalize_each_word(agent.technology)}\"!",
+           message=f"Your learning material should be ready to view in the new tab named \"{capitalize_each_word(agent.technology)}\"!",
            duration=5000)
+    
+def generate_page_name(technology: str, level: str, model: Model) -> str:
+    return f"{capitalize_each_word(technology)}_{level.capitalize()}_{model.value}"
+    
+def generate_page_url(technology: str, level: str, model: Model) -> str:
+    return f"learn_{remove_spaces_and_lower_case(technology)}_{level.lower()}_{model.name.lower()}"
+    
+def technology_page_exists(state: State) -> bool:
+    for page in state.list_of_pages:
+        logging.debug(f"User requested: {state.technology}, {state.level}, {state.model.model}")
+        if page.matches(technology_name=state.technology, difficulty_level=state.level, model=state.model.model):
+            return True
+    return False
     
 def update_model_usage(state: State) -> None:
     # need to update the number of requests left
@@ -125,7 +137,6 @@ n_requests = 0
 
 technology = "Elm"
 level = "Beginner"
-learning_material_ready = False
 
 NUM_GPT3_5_REQUESTS = 10
 NUM_GPT4_REQUESTS = 2
@@ -215,13 +226,6 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 <br/>
 
 
-"""
-
-"""
-<|part|render={learning_material_ready}|class_name=card|
-## **Your Learning Material**{: .color-primary}
-You can find your unique notes on a new tab called <|{technology}|> in the nav bar!
-|>
 """
 
 pages = {
