@@ -167,14 +167,11 @@ root_md = """
 
 <br/>
 
----
-
 <br/>
 
-**Code from [@tommysteryy](https://github.com/tommysteryy)**
+**Code by [@tommysteryy](https://github.com/tommysteryy)**
 
-Original code can be found [here](https://github.com/xoo-creative/flash)
-
+Original code can be found [here](https://github.com/xoo-creative/flash).
 |>
 
 """
@@ -223,10 +220,18 @@ The best way to learn new technologies. For SWEs, by SWEs. Utilizing key teachin
 
 """
 
+# stylekit = {
+#     "color_background_dark": "#001845",
+#     "color_paper_dark": "#002855",
+#     "color-primary": "#ff462b",
+#     "color_background_light": "#ade8f4",
+#     "color_paper_light": "#90e0ef",
+# }
+
 pages = {
     "/": root_md,
     "home": homepage
 }
 
 if __name__ == "__main__":
-    Gui(pages=pages).run(title='flash', use_reloader=True, debug=True)
+    Gui(pages=pages).run(title='flash', use_reloader=True, debug=True, dark_mode=True)
