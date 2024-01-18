@@ -4,22 +4,21 @@ import os
 import logging 
 import time
 import boto3
+from flash.commons.models import Model
 
 from flash.commons.utils import TEST_MD_CONTENT, _write_flash
 import boto3
 
-LAMBDA_FUNCTION_ARN="arn:aws:lambda:us-west-2:799492718470:function:flash"
-
-# load_dotenv()
 
 class LambdaAgent:
 
-    def __init__(self, technology: str, testing = False) -> None:
+    def __init__(self, technology: str, model: Model, testing = False) -> None:
 
         if technology.strip() == "":
             raise RuntimeError("Technology is empty. Did you pass in the correct technology?")
             
         self.technology: str = technology.strip()
+        self.model: Model = model
         self.testing = testing
         self.learning_material: str = ""
         self.initalize_aws()
@@ -32,13 +31,14 @@ class LambdaAgent:
             return TEST_MD_CONTENT
 
         payload = json.dumps({
-            "technology": self.technology
+            "technology": self.technology,
+            "model" : self.model.value
         })
 
         logging.info("Starting request to AWS Lambda")
         start_time = time.time()
 
-        response = self.lambda_client.invoke(FunctionName=LAMBDA_FUNCTION_ARN, Payload=json.dumps(payload))
+        response = self.lambda_client.invoke(FunctionName=os.environ["LAMBDA_FUNCTION_ARN"], Payload=json.dumps(payload))
 
         # response = requests.request("POST", LAMBDA_ENDPOINT, headers=headers, data=payload)
         logging.debug(f"Response recieved from lambda: {response}")
