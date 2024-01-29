@@ -33,7 +33,7 @@ We'll generate a short (< 3 min) read that will teach you everything you need to
 ## Demo
 
 <video controls>
-<source src="./static/flash-demo.mov" type="video/mp4">
+<source src="./static/flash_demo_final.mp4" type="video/mp4">
 </video>
 
 ## More Examples
