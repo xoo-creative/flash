@@ -32,9 +32,7 @@ We'll generate a short (< 3 min) read that will teach you everything you need to
   
 ## Demo
 
-<video controls>
-<source src="./static/flash_demo_final.mp4" type="video/mp4">
-</video>
+![Flash Demo](./static/flash_demo.gif "Flash Demo")
 
 ## More Examples
 
