@@ -1,5 +1,5 @@
 # flash ⚡️
-The faster and proper way to learn new technologies, specifically designed for software engineers. Power by [`flash-agent`](https://github.com/xoo-creative/flash-agent/tree/main), a parallelized, multi-agent AWS Lambda built with [LangChain](https://github.com/langchain-ai/langchain). Currently in `beta`.
+The faster and proper way to learn new technologies, specifically designed for software engineers. Power by [`flash-agent`](https://github.com/xoo-creative/flash-agent/tree/main), a parallelized, multi-agent AWS Lambda built with [LangChain](https://github.com/langchain-ai/langchain). Currently in `beta`. Front-end made with [taipy](https://github.com/Avaiga/taipy/).
 
 ![Flash Homepage](./static/flash_homepage.png "Flash Homepage")
 
